@@ -185,7 +185,15 @@ function _restart_gitlab_container()
 	_print_message "Restarting gitlab to use the new certifications."
 
 	cd "$gGitlabDir"
-	docker-compose restart gitlab > /dev/null 2>&1
+
+	# edit for my synology box
+
+	#docker-compose restart gitlab > /dev/null 2>&1
+
+    docker restart synology_gitlab_redis > /dev/null 2>&1
+    docker restart synology_gitlab_postgresql > /dev/null 2>&1
+    docker restart synology_gitlab > /dev/null 2>&1
+
 	if [[ $? -ne 0 ]];
 		then
 			_abort_session "Uh oh. Gitlab has failed to restart! Check your docker logs to find out why."
