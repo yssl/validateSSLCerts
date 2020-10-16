@@ -202,8 +202,14 @@ function _create_new_certs()
 {
 	local LEfolder="$gLECertDir"/"$gLEFolder"
 
+	# edit for my synology box
+
+	#cat "$LEfolder"/privkey.pem > "$gGitlabCertDir"/gitlab.key |\
+	#cat "$LEfolder"/cert.pem "$LEfolder"/fullchain.pem > "$gGitlabCertDir"/gitlab.crt |\
+	#cat "$LEfolder"/cert.pem > "$gGitlabCertDir"/cert.pem
+
 	cat "$LEfolder"/privkey.pem > "$gGitlabCertDir"/gitlab.key |\
-	cat "$LEfolder"/cert.pem "$LEfolder"/fullchain.pem > "$gGitlabCertDir"/gitlab.crt |\
+	cat "$LEfolder"/fullchain.pem "$LEfolder"/cert.pem > "$gGitlabCertDir"/gitlab.crt |\
 	cat "$LEfolder"/cert.pem > "$gGitlabCertDir"/cert.pem
 
 	chown 1000:1000 "$gGitlabCertDir"/gitlab.key "$gGitlabCertDir"/gitlab.crt "$gGitlabCertDir"/cert.pem
